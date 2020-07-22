@@ -1,0 +1,83 @@
+
+            <form [formGroup]="employeeForm">
+
+                <!-- {{studentBasicInfoForm.value | json}} -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="name">Name</label>
+                            <i style="color: tomato;">* </i>
+                            <input type="text" class="form-control" minlength="4" formControlName="name" appAlpahbetOnly [ngClass]="{ 'is-invalid': submitted && gf.name.errors }">
+                            <div *ngIf="submitted && gf.name.errors" class="invalid-feedback">
+                                <div *ngIf="gf.name.errors.required">First Name is required</div> 
+                                <div *ngIf="gf.name.errors">Name Should be min 4 characters</div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="phonenumber">Pnone Number</label>
+                                <i style="color: tomato;">* </i>
+                                <input type="text" class="form-control" formControlName="phonenumber" appAppNumericOnly [ngClass]="{ 'is-invalid': submitted && gf.phonenumber.errors }">
+                                <!-- appAlphabetOnly -->
+                                <div *ngIf="submitted && gf.phonenumber.errors" class="invalid-feedback">
+                                    <div *ngIf="gf.phonenumber.errors.required">Phone number is required</div> 
+                                    <div *ngIf="gf.phonenumber.errors">Please Type valid Phone number</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" formGroupName="address">
+                    <div class="row">
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                
+                                <input class="form-control" type="text" id="city" formControlName="city" 
+                                    >
+
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="address_line1">Address 1</label>
+                                
+                                <input class="form-control" type="text" id="address_line1" formControlName="address_line1" 
+                                    >
+
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="address_line2">Address 2</label>
+                                
+                                <input class="form-control" type="text" id="address_line2" formControlName="address_line2" 
+                                    >
+
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="postal_code">Postal Code</label>
+                                
+                                <input class="form-control" type="text" id="postal_code" formControlName="postal_code" 
+                                    >
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button" class="btn btn-primary" (click)="saveEmployeeInfo()">Save Employee</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger" [routerLink]="['/']">cancel</button>
+            </form>

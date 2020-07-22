@@ -1,0 +1,51 @@
+<button (click)="addItem()">Add Item</button><br><br>
+<input type="text" name="search" placeholder="Search.." [(ngModel)]="searchText"><br><br>
+<table id="tableStyle">
+  <tr>
+    <th>
+      Id
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Phone
+    </th>
+    <th>
+      City
+    </th>
+    <th>
+      Address 1
+    </th>
+    <th>
+      Address 2
+    </th>
+    <th>
+      Postal Code
+    </th>
+    <th>
+      Edit
+    </th>
+  </tr>
+  <tr *ngFor="let entry of tableData | filter:searchText;index as empId;">
+    <td>
+      {{entry.id}}
+    </td>
+    <td>
+      {{entry.name}}
+    </td>
+    <td>
+      {{entry.phone}}
+    </td>
+
+    <td *ngFor="let syllab of entry.address"> {{ syllab.city }} </td>
+    <td *ngFor="let syllab of entry.address"> {{ syllab.address_line1 }} </td>
+    <td *ngFor="let syllab of entry.address"> {{ syllab.address_line2 }} </td>
+    <td *ngFor="let syllab of entry.address"> {{ syllab.postal_code }} </td>
+
+    <td [routerLink]="['/employees', empId,'edit']">
+      Edit
+    </td>
+  </tr>
+
+</table>
